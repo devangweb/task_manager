@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.utils import get_openapi
+import os
 from core.database import engine, Base
 from api.routes import auth, tasks
 
@@ -22,10 +23,34 @@ app = FastAPI(
 app.include_router(auth.router)
 app.include_router(tasks.router)
 
-# Enable CORS so your React container can fetch data
+# Enable CORS with dynamic origins for development and production
+allowed_origins = [
+    "http://localhost:5173",      # Local React dev server (Vite)
+    "http://localhost:3000",      # Local React dev server (traditional)
+    "http://localhost:8000",      # Local FastAPI dev
+]
+
+# Add production frontend URL if available
+frontend_domain = os.getenv("REACT_APP_API_URL")
+if frontend_domain:
+    # REACT_APP_API_URL is the backend URL, so get the frontend from environment or construct it
+    frontend_url = os.getenv("FRONTEND_URL")
+    if frontend_url:
+        allowed_origins.append(frontend_url)
+    # Also allow requests from Railway's frontend service domain
+    if "railway.app" in frontend_domain:
+        # Extract domain and add it
+        backend_domain = frontend_domain.replace("http://", "").replace("https://", "")
+        allowed_origins.append(f"https://{backend_domain}")
+
+# Accept any Railway domain in production (more permissive but safe for internal Railway domains)
+allowed_origins.extend([
+    "https://frontend-production-e2459.up.railway.app",  # Your specific frontend
+])
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:3000"],
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -67,3 +92,4 @@ app.openapi = custom_openapi
 @app.get("/")
 def root():
     return {"message": "Welcome to the Task Manager API"}
+
