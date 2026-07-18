@@ -1,0 +1,367 @@
+.task-manager-container {
+  min-height: 100vh;
+  background: #f5f5f5;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.header-container{
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.header {
+ 
+  color: white;
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-info span {
+  font-size: 0.95rem;
+}
+
+.logout-btn {
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.main-content {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.tasks-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.section-header h2 {
+  color: #333;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.create-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.create-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
+
+.plus-icon {
+  font-weight: bold;
+  line-height: 1;
+}
+
+.tasks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.filter-bar {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+  flex-wrap: wrap;
+}
+
+.filter-bar label {
+  font-weight: 600;
+  color: #333;
+  white-space: nowrap;
+}
+
+.filter-btn {
+  padding: 0.5rem 1rem;
+  background: white;
+  border: 2px solid #ddd;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #666;
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+  border-color: #667eea;
+  color: #667eea;
+}
+
+.filter-btn.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-color: transparent;
+  color: white;
+}
+
+.task-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.edit-btn {
+  background: #e8f0ff;
+  border: 1px solid #b3d1ff;
+  color: #0051ba;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.edit-btn:hover {
+  background: #d1e0ff;
+  border-color: #0051ba;
+  transform: scale(1.1);
+}
+
+.delete-btn {
+  background: #fee;
+  border: 1px solid #fcc;
+  color: #c33;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.delete-btn:hover {
+  background: #fdd;
+  border-color: #b22;
+  color: #b22;
+}
+
+.task-status-buttons {
+  display: flex;
+  gap: 0.5rem;
+    /* padding: 0.05rem 0.6rem; */
+  border-radius: 20px;
+  font-size: 0.6rem;
+  font-weight: 600;
+  /* margin-top: 0.5rem;
+  padding-top:0.5rem; */
+  /* border-top: 1px solid #f0f0f0; */
+  justify-content: center;
+}
+
+.status-toggle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  background: white;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #666;
+  transition: all 0.3s ease;
+}
+
+.status-toggle:hover {
+  transform: scale(1.15);
+  border-color: #667eea;
+  color: #667eea;
+}
+
+.status-toggle.pending {
+  border-color: #ba0000;
+  color: #ba0000;
+}
+
+.status-toggle.pending:hover {
+  background: #ffe8e8;
+}
+
+.status-toggle.wip {
+  border-color: #ba7700;
+  color: #ba7700;
+}
+
+.status-toggle.wip:hover {
+  background: #fff4e8;
+}
+
+.status-toggle.completed {
+  border-color: #006b2b;
+  color: #006b2b;
+}
+
+.status-toggle.completed:hover {
+  background: #e8f5e9;
+}
+
+.long-title {
+  text-align: left;
+  white-space: nowrap;      
+  overflow: hidden;         
+  text-overflow: ellipsis;  
+  width: 250px;
+}
+
+.task-description {
+  color: #666;
+  font-size: 0.9rem;
+  margin: 0 0 1rem 0;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.task-meta {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.priority-badge,
+.status-badge {
+    margin: 0 0.2rem ;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.priority-badge {
+  background: #e8f0ff;
+  color: #0051ba;
+}
+
+.priority-high {
+  background: #ffe8e8 !important;
+  color: #ba0000 !important;
+}
+
+.priority-medium {
+  background: #fff4e8 !important;
+  color: #ba7700 !important;
+}
+
+.priority-low {
+  background: #e8f5e9 !important;
+  color: #006b2b !important;
+}
+
+.status-badge {
+  background: #e8f0ff;
+  color: #0051ba;
+}
+
+.status-completed {
+  background: #e8f5e9 !important;
+  color: #006b2b !important;
+}
+
+.status-wip {
+  background: #fff4e8 !important;
+  color: #ba7700 !important;
+}
+
+.status-pending {
+  background: #ffe8e8 !important;
+  color: #ba0000 !important;
+}
+
+.task-due-date {
+  color: #666;
+  font-size: 0.85rem;
+  padding: 0.3rem 0;
+  margin: 0 auto;
+  border-top: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #999;
+}
+
+.empty-state p {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-size: 1.1rem;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        min-width: 300px;
+        margin: 0;
+        padding:0;
+    }
+}
