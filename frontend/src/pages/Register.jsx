@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import '../styles/Auth.css'
+import { API_BASE_URL } from '../config'
 
 function Register() {
   const [name, setName] = useState('')
@@ -23,7 +24,7 @@ function Register() {
     setLoading(true)
 
     try {
-      const response = await fetch('http://localhost:8000/auth/register', {
+      const response = await fetch(`${API_BASE_URL}/auth/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

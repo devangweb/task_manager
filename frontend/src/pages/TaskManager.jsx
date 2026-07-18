@@ -4,6 +4,7 @@ import TaskForm from '../components/TaskForm'
 import TaskList from '../components/TaskList'
 import Header from '../components/Header'
 import '../styles/TaskManager.css'
+import { API_BASE_URL } from '../config'
 
 function TaskManager() {
   const [user, setUser] = useState(null)
@@ -24,7 +25,7 @@ function TaskManager() {
     try {
       const token = localStorage.getItem('token')
       // You can add an endpoint to get current user info here
-      fetch('http://localhost:8000/auth/me', {
+      fetch(`${API_BASE_URL}/auth/me`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -41,7 +42,7 @@ function TaskManager() {
   const fetchTasks = async () => {
     try {
       const token = localStorage.getItem('token')
-      let url = 'http://localhost:8000/tasks'
+      let url = `${API_BASE_URL}/tasks`
       if (statusFilter) {
         url += `?status_filter=${statusFilter}`
       }
@@ -69,7 +70,7 @@ function TaskManager() {
   const handleCreateTask = async (taskData) => {
     try {
       const token = localStorage.getItem('token')
-      const response = await fetch('http://localhost:8000/tasks', {
+      const response = await fetch(`${API_BASE_URL}/tasks`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -94,7 +95,7 @@ function TaskManager() {
   const handleEditTask = async (taskId, taskData) => {
     try {
       const token = localStorage.getItem('token')
-      const response = await fetch(`http://localhost:8000/tasks/${taskId}`, {
+      const response = await fetch(`${API_BASE_URL}/tasks/${taskId}`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -124,7 +125,7 @@ function TaskManager() {
 
     try {
       const token = localStorage.getItem('token')
-      const response = await fetch(`http://localhost:8000/tasks/${taskId}`, {
+      const response = await fetch(`${API_BASE_URL}/tasks/${taskId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -143,7 +144,7 @@ function TaskManager() {
   const handleUpdateStatus = async (taskId, newStatus) => {
     try {
       const token = localStorage.getItem('token')
-      const response = await fetch(`http://localhost:8000/tasks/${taskId}/status`, {
+      const response = await fetch(`${API_BASE_URL}/tasks/${taskId}/status`, {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -164,7 +165,7 @@ function TaskManager() {
   const handleLogout = async () => {
     try {
       const token = localStorage.getItem('token')
-      await fetch('http://localhost:8000/auth/logout', {
+      await fetch(`${API_BASE_URL}/auth/logout`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
